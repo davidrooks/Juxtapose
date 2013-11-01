@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+  <style type="text/css">
+      .short-screenshot {
+          height: 200px;
+          width: 200px;
+      }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="row page-header">
+    <h1>Juxtaposed screenshots</h1>
+  </div>
+  <div class="row">
+    <!-- <%= @directories.length %> -->
+    <div class="col-lg-2">
+      <div class="panel">
+        <div class="panel-heading">Screenshots:</div>
+        <ul class="list-group list-group-flush">
+          <% @directories.keys.sort.each do |dir| %>
+              <li class="list-group-item"><a href="#<%=dir%>"><%=dir%></a></li>
+          <% end %>
+        </ul>
+      </div>
+      <p>**********************************</p>
+      <p>NOTE: screenshots are only shown where they differ.</p>
+      <p>no screenshots = no differences = hooray!!</p>
+      <p>**********************************</p>
+    </div>
+    <div class="col-lg-10">
+      <% @directories.to_a.sort.each do |dir, sizes| %>
+          <% sizes.to_a.sort.each do |size, files| %>
+              <% if files[:diff] %>
+                  <div class="row">
+                    <a name="<%= dir %>"></a>
+                    <h3 class="col-lg-1 text-muted"><%= dir.upcase %></h3>
+                    <div class="col-lg-3">
+                      <h3 class="col-lg-1 text-muted">Baseline Image</h3>
+                    </div>
+                    <div class="col-lg-3">
+                      <h3 class="col-lg-1 text-muted">Latest Image</h3>
+                    </div>
+                  </div>
+                  <% break %>
+              <% end %>
+          <% end %>
+          <% sizes.to_a.sort.each do |size, files| %>
+              <% if files[:diff] %>
+                  <div class="row">
+                    <h3 class="col-lg-1 text-muted"><%=size%>px</h3>
+                    <div class="col-lg-3">
+                      <a href="<%=files[:baseline][:filename]%>">
+                        <img class="short-screenshot img-thumbnail" src="<%=files[:baseline][:thumb]%>">
+                      </a>
+                    </div>
+                    <div class="col-lg-3">
+                      <% if files[:diff] %>
+                          <a href="<%=files[:diff][:filename]%>">
+                            <img class="short-screenshot img-thumbnail" src="<%=files[:diff][:thumb]%>">
+                          </a>
+                      <% end %>
+                    </div>
+                    <div class="col-lg-4">
+                      <% if files[:diff] %>
+                          <form action="/" method="post">
+                            <input type="hidden" name="old_file" value="<%=files[:baseline][:filename]%>">
+                            <input type="hidden" name="new_file" value="<%=files[:diff][:filename]%>">
+                            <input type="submit" value="Accept change and set as new baseline">
+                          </form>
+                      <% end %>
+                    </div>
+
+                  </div>
+              <% end %>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</body>
+</html>
