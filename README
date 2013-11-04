@@ -137,7 +137,11 @@ Take a look at the LICENSE file in the code.
 
 ## Credits
 
-    I have borrowed heavily from the BBC Wraith project - https://github.com/BBC-News/wraith
+I have borrowed heavily from the BBC Wraith project
+
+   * https://github.com/BBC-News/wraith
+
+Twitter bootstrap credit goes to:
 
  * [Dave Blooman](http://twitter.com/dblooman)
  * [John Cleveley](http://twitter.com/jcleveley)
