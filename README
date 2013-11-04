@@ -1,9 +1,9 @@
 # juxtapose
 
- * Website: https://github.com/bskyb-commerce/juxtapose
- * Source: https://github.com/bskyb-commerce/juxtapose
+ * Website: https://github.com/davidrooks/Juxtapose
+ * Source: https://github.com/davidrooks/Juxtapose
 
-Juxtapose is a screenshot comparison tool, created by David Rooks at BSKYB.
+Juxtapose is a screenshot comparison tool, created by David Rooks.
 
 
 ## What is it?
@@ -24,7 +24,7 @@ It's up to you to decide which browser engine you want to run it against. Juxtap
 curl -fsSL https://raw.github.com/bskyb-commerce/juxtapose/go/install | bash
 cd juxtapose
 bundle install
-'''
+```
 
 ## Config
 
@@ -54,7 +54,7 @@ screen_widths:
 
 #Type the browsers you want to test against.
 #NOTE: chrome doesn't currently work properly as chromedriver does not take full page screenshots
-     : not tested against IE
+#     : not tested against IE
 browsers:
     - firefox
     - chrome
